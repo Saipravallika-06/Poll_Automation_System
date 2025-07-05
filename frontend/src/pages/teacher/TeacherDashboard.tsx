@@ -1,9 +1,8 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
-import { ChartContainer } from "@/components/ui/chart";
+import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import { useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
 
 export default function TeacherDashboard() {
   const navigate = useNavigate();
@@ -12,7 +11,9 @@ export default function TeacherDashboard() {
   const overview = {
     totalPolls: 12,
     totalResponses: 340,
-    participationRate: "85%",
+    participationRate: 85,
+    attended: 34,
+    notAttended: 6,
   };
 
   const recentPolls = [
@@ -21,13 +22,22 @@ export default function TeacherDashboard() {
   ];
 
   const pollResults = [
-    { question: "Q1: 2+2?", options: [{ text: "4", count: 20 }, { text: "3", count: 5 }] },
+    { option: "A", votes: 20 },
+    { option: "B", votes: 10 },
+    { option: "C", votes: 5 },
   ];
 
   const faqs = [
     { q: "How do I create a poll?", a: "Click the 'Create Poll' button and fill in the details." },
     { q: "How to use AI to generate polls?", a: "Click 'AI Create Poll' and follow the prompts." },
   ];
+
+  // Pie chart data for participation
+  const pieData = [
+    { name: "Attended", value: overview.attended },
+    { name: "Not Attended", value: overview.notAttended },
+  ];
+  const COLORS = ["#34d399", "#f87171"];
 
   return (
     <div className="space-y-8">
@@ -53,104 +63,117 @@ export default function TeacherDashboard() {
         </div>
       </div>
 
-      {/* Overview Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card>
-          <CardHeader>
-            <CardTitle>Total Polls</CardTitle>
+      {/* First Row: Total Polls and Total Responses */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Card className="flex flex-col justify-center h-32">
+          <CardHeader className="p-4 pb-0">
+            <CardTitle className="text-left text-base">Total Polls</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="flex-1 flex items-center justify-center p-4 pt-2">
             <span className="text-3xl font-bold text-purple-600">{overview.totalPolls}</span>
           </CardContent>
         </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Total Responses</CardTitle>
+        <Card className="flex flex-col justify-center h-32">
+          <CardHeader className="p-4 pb-0">
+            <CardTitle className="text-left text-base">Total Responses</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="flex-1 flex items-center justify-center p-4 pt-2">
             <span className="text-3xl font-bold text-blue-600">{overview.totalResponses}</span>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Participation Rate</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <span className="text-3xl font-bold text-emerald-600">{overview.participationRate}</span>
           </CardContent>
         </Card>
       </div>
 
-      {/* Recent Activity */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Recent Polls & Activity</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Poll Name</TableHead>
-                <TableHead>Created</TableHead>
-                <TableHead>Attended</TableHead>
-                <TableHead>Not Attended</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {recentPolls.map((poll, idx) => (
-                <TableRow key={idx}>
-                  <TableCell>{poll.name}</TableCell>
-                  <TableCell>{poll.created}</TableCell>
-                  <TableCell>{poll.attended}</TableCell>
-                  <TableCell>{poll.notAttended}</TableCell>
+      {/* Second Row: Recent Polls (left, big) and Participation/Poll Results (right, stacked) */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Recent Polls & Activity */}
+        <Card className="h-full min-h-[340px]">
+          <CardHeader>
+            <CardTitle>Recent Polls & Activity</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Poll Name</TableHead>
+                  <TableHead>Created</TableHead>
+                  <TableHead>Attended</TableHead>
+                  <TableHead>Not Attended</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </CardContent>
-      </Card>
-
-      {/* Dynamic Poll Results */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Poll Results (Live)</CardTitle>
-        </CardHeader>
-        <CardContent>
-          {pollResults.map((result, idx) => (
-            <div key={idx} className="mb-4">
-              <div className="font-semibold">{result.question}</div>
-              <div className="flex gap-4 mt-2">
-                {result.options.map((opt, i) => (
-                  <div key={i} className="flex flex-col items-center">
-                    <span className="text-lg font-bold text-purple-600">{opt.count}</span>
-                    <span className="text-sm">{opt.text}</span>
-                  </div>
+              </TableHeader>
+              <TableBody>
+                {recentPolls.map((poll, idx) => (
+                  <TableRow key={idx}>
+                    <TableCell>{poll.name}</TableCell>
+                    <TableCell>{poll.created}</TableCell>
+                    <TableCell>{poll.attended}</TableCell>
+                    <TableCell>{poll.notAttended}</TableCell>
+                  </TableRow>
                 ))}
-              </div>
-            </div>
-          ))}
-        </CardContent>
-      </Card>
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
 
-      {/* Summary Reports (Chart Example) */}
+        {/* Right: Participation Rate and Poll Results (stacked) */}
+        <div className="flex flex-col gap-6 h-full">
+          {/* Participation Rate */}
+          <Card className="flex-1 flex flex-col justify-center h-64">
+            <CardHeader className="p-4 pb-0">
+              <CardTitle className="text-left text-base">Participation Rate</CardTitle>
+            </CardHeader>
+            <CardContent className="flex-1 flex flex-col items-center justify-center p-4 pt-2">
+              <ResponsiveContainer width={120} height={120}>
+                <PieChart>
+                  <Pie
+                    data={pieData}
+                    dataKey="value"
+                    nameKey="name"
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={50}
+                    label
+                  >
+                    {pieData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Pie>
+                </PieChart>
+              </ResponsiveContainer>
+              <div className="text-2xl font-bold text-emerald-600 mt-2">
+                {overview.participationRate}%
+              </div>
+            </CardContent>
+          </Card>
+          {/* Poll Results (Live) */}
+          <Card className="flex-1">
+            <CardHeader>
+              <CardTitle>Poll Results (Live)</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ResponsiveContainer width="100%" height={150}>
+                <BarChart data={pollResults}>
+                  <XAxis dataKey="option" />
+                  <YAxis />
+                  <Tooltip />
+                  <Bar dataKey="votes" fill="#6366f1" />
+                </BarChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+
+      {/* Third Row: Summary */}
       <Card>
         <CardHeader>
-          <CardTitle>Summary Reports</CardTitle>
+          <CardTitle>Summary</CardTitle>
         </CardHeader>
         <CardContent>
-          <ChartContainer
-            config={{
-              responses: { color: "#6366f1", label: "Responses" },
-              notAttended: { color: "#f59e42", label: "Not Attended" },
-            }}
-          >
-            {/* Insert your chart here, e.g., <BarChart data={...} /> */}
-            <div className="text-center text-gray-400">[Chart goes here]</div>
-          </ChartContainer>
+          <div className="text-gray-500">[Summary content goes here]</div>
         </CardContent>
       </Card>
 
-      {/* FAQs */}
+      {/* Fourth Row: FAQs */}
       <Card>
         <CardHeader>
           <CardTitle>FAQs</CardTitle>
