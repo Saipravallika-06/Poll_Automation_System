@@ -81,7 +81,7 @@ export default function TeacherLayout() {
               }`}
               asChild
             >
-              <Link to="/teacher/home">
+              <Link to="/teacher/dashboard">
                 <Home className="h-4 w-4 mr-2" />
                 <span className="relative z-10">Dashboard</span>
                 {isActiveRoute('/teacher/home') && (

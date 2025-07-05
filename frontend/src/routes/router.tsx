@@ -21,6 +21,7 @@ import TeacherPollRoom from '@/pages/teacher/TeacherPollRoom'
 import CreatePollRoom from '@/pages/teacher/CreatePollRoom'
 import JoinPollRoom from '@/pages/student/JoinPollRoom'
 import StudentPollRoom from '@/pages/student/StudentPollRoom'
+import TeacherDashboard from '@/pages/teacher/TeacherDashboard'
 
 // Root route with error and notFound handling
 const rootRoute = new RootRoute({
@@ -107,6 +108,20 @@ const teacherLayoutRoute = new Route({
   component: TeacherLayout,
 });
 
+// Teacher dashboard route
+const teacherDashboardRoute = new Route({
+  getParentRoute: () => teacherLayoutRoute,
+  path: '/dashboard',
+  component: TeacherDashboard,
+});
+
+// Teacher index route
+const teacherIndexRoute = new Route({
+  getParentRoute: () => teacherLayoutRoute,
+  path: '/',
+  component: TeacherDashboard,
+});
+
 // Student layout route with auth check and role verification
 const studentLayoutRoute = new Route({
   getParentRoute: () => rootRoute,
@@ -177,6 +192,8 @@ const routeTree = rootRoute.addChildren([
   indexRoute,
   authRoute,
   teacherLayoutRoute.addChildren([
+    teacherDashboardRoute,
+    teacherIndexRoute,
     teacherGenAIHomeRoute,
     teacherPollRoomRoute,
     teacherCreateRoomRoute,

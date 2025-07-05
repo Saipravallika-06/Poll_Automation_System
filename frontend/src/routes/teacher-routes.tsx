@@ -4,6 +4,7 @@ import Dashboard from "@/pages/teacher/dashboard";
 import GenAIHomePage from "@/pages/teacher/genai-home";
 import PollRoomPage from "@/pages/teacher/TeacherPollRoom";
 import CreateRoomPage from "@/pages/teacher/CreatePollRoom";
+import TeacherDashboard from "@/pages/teacher/TeacherDashboard";
 
 const teacherRoutes: RouteObject = {
   path: "/teacher",
@@ -11,11 +12,11 @@ const teacherRoutes: RouteObject = {
   children: [
     {
       path: "dashboard",
-      element: <Dashboard />,
+      element: <TeacherDashboard />,
     },
     {
       index: true,
-      element: <Dashboard />, // Default to Dashboard
+      element: <TeacherDashboard />, // Default to Dashboard
     },
     {
       path: "genai",
