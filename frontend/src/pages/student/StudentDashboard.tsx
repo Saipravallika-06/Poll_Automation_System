@@ -35,8 +35,8 @@ export default function StudentDashboard() {
     <div className={`${themeClasses} transition-colors duration-300`}>
       <div className="p-6 space-y-6 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 min-h-screen">
         {/* Top Row: Welcome Banner and Poll Stats */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Welcome Banner */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Welcome Banner */}
           <Card className="lg:col-span-2 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-400 dark:from-blue-600 dark:via-purple-600 dark:to-cyan-500 text-white relative overflow-hidden shadow-lg dark:shadow-2xl border-0">
             <CardContent className="flex flex-row items-center justify-between p-8 h-64">
               {/* Left: Text (50%) */}
@@ -50,7 +50,7 @@ export default function StudentDashboard() {
                 >
                   Join Poll Room
                 </Button>
-              </div>
+            </div>
               {/* Right: Image placeholder */}
               <div className="w-1/2 flex items-center justify-center">
                 <div className="w-48 h-48 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm relative overflow-hidden">
@@ -65,8 +65,8 @@ export default function StudentDashboard() {
                   {/* <BarChart3 className="w-24 h-24 text-white/80 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" /> */}
                 </div>
               </div>
-            </CardContent>
-          </Card>
+          </CardContent>
+        </Card>
 
           {/* Poll Stats Summary */}
           <Card className="flex flex-col justify-between p-6 shadow-lg dark:shadow-2xl bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
@@ -82,22 +82,22 @@ export default function StudentDashboard() {
                 <div className="flex items-center gap-2">
                   <CheckCircle className="h-4 w-4 text-green-500 dark:text-green-400" />
                   <span className="font-semibold text-gray-700 dark:text-gray-300">Polls Taken</span>
-                </div>
+            </div>
                 <span className="text-green-500 dark:text-green-400 font-bold text-lg">{pollStats.taken}</span>
-              </div>
-              <div className="flex items-center justify-between">
+            </div>
+            <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Clock className="h-4 w-4 text-red-500 dark:text-red-400" />
                   <span className="font-semibold text-gray-700 dark:text-gray-300">Polls Absent</span>
                 </div>
                 <span className="text-red-500 dark:text-red-400 font-bold text-lg">{pollStats.absent}</span>
               </div>
-            </div>
-          </Card>
-        </div>
+          </div>
+        </Card>
+      </div>
 
         {/* Middle Row: Poll Results, Poll Details, Active Polls, Upcoming Polls */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* My Poll Results */}
           <Card className="lg:col-span-1 shadow-md dark:shadow-xl bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
             <CardHeader className="pb-3">
@@ -105,26 +105,26 @@ export default function StudentDashboard() {
                 <Trophy className="h-5 w-5" />
                 My Poll Results
               </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
+          </CardHeader>
+          <CardContent className="space-y-4">
               {pollResults.map((poll, idx) => (
                 <div key={poll.name} className="flex items-center gap-4 p-3 rounded-lg bg-blue-50 dark:bg-slate-700/50 border border-blue-100 dark:border-slate-600 hover:bg-blue-100 dark:hover:bg-slate-700 transition-colors">
-                  <ResponsiveContainer width={48} height={48}>
-                    <PieChart>
-                      <Pie
+                <ResponsiveContainer width={48} height={48}>
+                  <PieChart>
+                    <Pie
                         data={[{ value: poll.score }, { value: 20 - poll.score }]}
-                        dataKey="value"
-                        innerRadius={16}
-                        outerRadius={24}
-                        startAngle={90}
-                        endAngle={-270}
-                      >
-                        <Cell fill={projectColors[idx % projectColors.length]} />
+                      dataKey="value"
+                      innerRadius={16}
+                      outerRadius={24}
+                      startAngle={90}
+                      endAngle={-270}
+                    >
+                      <Cell fill={projectColors[idx % projectColors.length]} />
                         <Cell fill={isDark ? "#374151" : "#e5e7eb"} />
-                      </Pie>
-                    </PieChart>
-                  </ResponsiveContainer>
-                  <div>
+                    </Pie>
+                  </PieChart>
+                </ResponsiveContainer>
+                <div>
                     <div className="font-bold text-lg text-blue-800 dark:text-blue-300">{poll.score}</div>
                     <div className="text-sm font-semibold text-gray-700 dark:text-gray-300">{poll.name}</div>
                     <div className="text-xs text-gray-500 dark:text-gray-400">{poll.subject}</div>
@@ -152,11 +152,11 @@ export default function StudentDashboard() {
                   </div>
                   <div className="text-sm text-gray-700 dark:text-gray-400 mt-1">
                     Timer: <span className="font-semibold text-blue-600 dark:text-blue-400">{poll.timer}</span>
-                  </div>
                 </div>
-              ))}
-            </CardContent>
-          </Card>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
 
           {/* Active Polls */}
           <Card className="lg:col-span-1 shadow-md dark:shadow-xl bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
@@ -165,7 +165,7 @@ export default function StudentDashboard() {
                 <div className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse"></div>
                 Active Polls
               </CardTitle>
-            </CardHeader>
+          </CardHeader>
             <CardContent className="space-y-3">
               <div className="flex items-center gap-3 p-3 rounded-lg bg-cyan-50 dark:bg-slate-700/50 border border-cyan-100 dark:border-slate-600">
                 <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse"></span>
@@ -174,8 +174,8 @@ export default function StudentDashboard() {
                   <div className="text-xs text-gray-500 dark:text-gray-400">Ongoing</div>
                 </div>
               </div>
-            </CardContent>
-          </Card>
+          </CardContent>
+        </Card>
 
           {/* Upcoming Polls */}
           <Card className="lg:col-span-1 shadow-md dark:shadow-xl bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
@@ -184,8 +184,8 @@ export default function StudentDashboard() {
                 <Calendar className="h-5 w-5" />
                 Upcoming Polls
               </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
+          </CardHeader>
+          <CardContent className="space-y-3">
               {tasks.map((task, idx) => (
                 <div key={task.name} className="flex items-center gap-3 p-3 rounded-lg bg-amber-50 dark:bg-slate-700/50 border border-amber-100 dark:border-slate-600">
                   <span className={`w-2 h-2 rounded-full ${
@@ -312,8 +312,8 @@ export default function StudentDashboard() {
                   </div>
                 </div>
               </div>
-            </CardContent>
-          </Card>
+          </CardContent>
+        </Card>
         </div>
 
         {/* Performance Summary */}
@@ -335,7 +335,7 @@ export default function StudentDashboard() {
                 <div className="text-sm font-semibold text-blue-800 dark:text-blue-300">Participation Rate</div>
                 <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mt-1">75%</div>
                 <div className="text-xs text-blue-600 dark:text-blue-400">15 out of 20 polls</div>
-              </div>
+                </div>
               <div className="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-200 dark:border-purple-800">
                 <div className="text-sm font-semibold text-purple-800 dark:text-purple-300">Best Subject</div>
                 <div className="text-2xl font-bold text-purple-600 dark:text-purple-400 mt-1">Physics</div>

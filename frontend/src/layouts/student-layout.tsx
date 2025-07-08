@@ -27,6 +27,13 @@ const AuroraText = ({
   </span>
 );
 
+// Mock data for attended polls
+const attendedPolls = [
+  { id: "1", title: "Math Quiz", date: "2024-06-01" },
+  { id: "2", title: "Science Poll", date: "2024-06-05" },
+  { id: "3", title: "History Quiz", date: "2024-06-10" },
+];
+
 export default function StudentLayout() {
   const { user } = useAuthStore();
   const navigate = useNavigate();
@@ -116,6 +123,36 @@ export default function StudentLayout() {
                 )}
               </Link>
             </Button>
+            {/* My Polls Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className={`relative h-10 px-4 text-sm font-medium transition-all duration-300 group ${isActiveRoute('/student/poll-analysis')
+                    ? 'bg-gradient-to-r from-purple-100 to-blue-100 text-purple-700 shadow-md shadow-purple-200/50 dark:from-purple-900/40 dark:to-blue-900/40 dark:text-purple-300 dark:shadow-purple-900/20'
+                    : 'text-slate-700 hover:bg-gradient-to-r hover:from-slate-100 hover:to-blue-50 hover:text-slate-900 hover:shadow-md hover:shadow-slate-200/50 dark:text-gray-300 dark:hover:bg-gradient-to-r dark:hover:from-gray-800 dark:hover:to-gray-700 dark:hover:text-white dark:hover:shadow-gray-900/20'
+                  }`}
+                >
+                  <Users className="h-4 w-4 mr-2" />
+                  <span className="relative z-10">My Polls</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="min-w-[220px]">
+                {attendedPolls.length === 0 ? (
+                  <DropdownMenuItem disabled>No polls attended</DropdownMenuItem>
+                ) : (
+                  attendedPolls.map((poll) => (
+                    <DropdownMenuItem asChild key={poll.id}>
+                      <Link to={`/student/poll-analysis/${poll.id}` as any} className="flex flex-col">
+                        <span className="font-semibold">{poll.title}</span>
+                        <span className="text-xs text-gray-500">{poll.date}</span>
+                      </Link>
+                    </DropdownMenuItem>
+                  ))
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </nav>
 
           {/* Enhanced Right side */}

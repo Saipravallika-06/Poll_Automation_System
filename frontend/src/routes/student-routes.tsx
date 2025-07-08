@@ -4,6 +4,7 @@ import StudentDashboard from "@/pages/student/dashboard";
 // import ParentComponent from "@/ai-components/ParentComponent";
 import JoinPollRoom from "@/pages/student/JoinPollRoom"; 
 import StudentPollRoom from "@/pages/student/StudentPollRoom";
+import PollAnalysisPage from "@/pages/student/PollAnalysisPage";
 
 const studentRoutes: RouteObject = {
   path: "/student",
@@ -20,6 +21,10 @@ const studentRoutes: RouteObject = {
     {
       path: "pollroom/$code",
       element: <StudentPollRoom />,
+    },
+    {
+      path: "poll-analysis/$pollId",
+      element: <PollAnalysisPage />,
     },
     {
       index: true,

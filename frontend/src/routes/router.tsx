@@ -25,6 +25,7 @@ import TeacherDashboard from '@/pages/teacher/TeacherDashboard'
 import StudentDashboard from '@/pages/student/StudentDashboard'
 import StudentProfile from '@/pages/student/StudentProfile'
 import TeacherProfile from '@/pages/teacher/TeacherProfile'
+import PollAnalysisPage from '@/pages/student/PollAnalysisPage'
 
 // Root route with error and notFound handling
 const rootRoute = new RootRoute({
@@ -198,6 +199,13 @@ const studentJoinRoomRoute = new Route({
   component: JoinPollRoom,
 });
 
+// Student poll analysis route
+const studentPollAnalysisRoute = new Route({
+  getParentRoute: () => studentLayoutRoute,
+  path: '/poll-analysis/$pollId',
+  component: PollAnalysisPage,
+});
+
 // Create a catch-all not found route
 const notFoundRoute = new NotFoundRoute({
   getParentRoute: () => rootRoute,
@@ -220,6 +228,7 @@ const routeTree = rootRoute.addChildren([
     studentJoinRoomRoute,
     studentDashboardRoute,
     studentProfileRoute,
+    studentPollAnalysisRoute,
   ]),
 ]);
 

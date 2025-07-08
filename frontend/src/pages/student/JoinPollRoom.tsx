@@ -56,50 +56,11 @@ export default function JoinPollRoom() {
       </div>
 
       <div className="relative container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8">
-          {/* Enhanced Sidebar */}
-          <Card className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-slate-200/80 h-fit dark:bg-gray-900/90 dark:border-gray-700/80 dark:shadow-gray-900/20">
-            <CardHeader className="pb-4">
-              <div className="flex items-center space-x-3">
-                <div className="relative group">
-                  <div className="absolute -inset-1 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl blur opacity-25 group-hover:opacity-40 transition-opacity duration-300 dark:from-purple-400 dark:to-indigo-500"></div>
-                  <div className="relative w-10 h-10 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl flex items-center justify-center dark:from-purple-400 dark:to-indigo-500">
-                    <Gauge className="text-white h-5 w-5" />
-                  </div>
-                </div>
-                <div>
-                  <CardTitle className="text-lg font-bold text-gray-800 dark:text-gray-100">Dashboard</CardTitle>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Your learning hub</p>
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <nav className="space-y-2">
-                <a href="#" className="flex items-center px-4 py-3 rounded-xl bg-gradient-to-r from-purple-100 to-indigo-100 text-purple-700 font-semibold shadow-md shadow-purple-200/50 dark:from-purple-900/40 dark:to-indigo-900/40 dark:text-purple-300 dark:shadow-purple-900/20 transition-all duration-300">
-                  <Gauge className="mr-3 h-4 w-4" /> Dashboard
-                </a>
-                <a href="#" className="flex items-center px-4 py-3 rounded-xl text-gray-700 hover:bg-gradient-to-r hover:from-slate-100 hover:to-blue-50 hover:text-slate-900 hover:shadow-md hover:shadow-slate-200/50 dark:text-gray-300 dark:hover:bg-gradient-to-r dark:hover:from-gray-800 dark:hover:to-gray-700 dark:hover:text-white dark:hover:shadow-gray-900/20 transition-all duration-300">
-                  <Vote className="mr-3 h-4 w-4" /> My Polls
-                </a>
-                <a href="#" className="flex items-center px-4 py-3 rounded-xl text-gray-700 hover:bg-gradient-to-r hover:from-slate-100 hover:to-blue-50 hover:text-slate-900 hover:shadow-md hover:shadow-slate-200/50 dark:text-gray-300 dark:hover:bg-gradient-to-r dark:hover:from-gray-800 dark:hover:to-gray-700 dark:hover:text-white dark:hover:shadow-gray-900/20 transition-all duration-300">
-                  <Users className="mr-3 h-4 w-4" /> Classes
-                </a>
-                <a href="#" className="flex items-center px-4 py-3 rounded-xl text-gray-700 hover:bg-gradient-to-r hover:from-slate-100 hover:to-blue-50 hover:text-slate-900 hover:shadow-md hover:shadow-slate-200/50 dark:text-gray-300 dark:hover:bg-gradient-to-r dark:hover:from-gray-800 dark:hover:to-gray-700 dark:hover:text-white dark:hover:shadow-gray-900/20 transition-all duration-300">
-                  <BarChart3 className="mr-3 h-4 w-4" /> Analytics
-                </a>
-                <a href="#" className="flex items-center px-4 py-3 rounded-xl text-gray-700 hover:bg-gradient-to-r hover:from-slate-100 hover:to-blue-50 hover:text-slate-900 hover:shadow-md hover:shadow-slate-200/50 dark:text-gray-300 dark:hover:bg-gradient-to-r dark:hover:from-gray-800 dark:hover:to-gray-700 dark:hover:text-white dark:hover:shadow-gray-900/20 transition-all duration-300">
-                  <Settings className="mr-3 h-4 w-4" /> Settings
-                </a>
-                <a href="#" className="flex items-center px-4 py-3 rounded-xl text-gray-700 hover:bg-gradient-to-r hover:from-slate-100 hover:to-blue-50 hover:text-slate-900 hover:shadow-md hover:shadow-slate-200/50 dark:text-gray-300 dark:hover:bg-gradient-to-r dark:hover:from-gray-800 dark:hover:to-gray-700 dark:hover:text-white dark:hover:shadow-gray-900/20 transition-all duration-300">
-                  <HelpCircle className="mr-3 h-4 w-4" /> Help
-                </a>
-              </nav>
-            </CardContent>
-          </Card>
-
+        {/* Removed custom header row with Home, Room, My Polls */}
+        <div className="grid grid-cols-1 lg:grid-cols-1 gap-8">
           {/* Enhanced Main Content */}
           <Card className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-slate-200/80 dark:bg-gray-900/90 dark:border-gray-700/80 dark:shadow-gray-900/20">
-            <CardHeader className="pb-6">
+            <CardHeader className="pb-3">
               <div className="flex items-center space-x-3">
                 <div className="relative group">
                   <div className="absolute -inset-1 bg-gradient-to-br from-purple-500 to-blue-500 rounded-xl blur opacity-25 group-hover:opacity-40 transition-opacity duration-300 dark:from-purple-400 dark:to-blue-400"></div>
@@ -111,12 +72,12 @@ export default function JoinPollRoom() {
                   <CardTitle className="text-2xl font-bold text-gray-800 dark:text-gray-100">
                     Join Poll Room
                   </CardTitle>
-                  <p className="text-gray-600 dark:text-gray-400 mt-2">Enter your details to join an active poll session</p>
+                  <p className="text-gray-600 dark:text-gray-400 mt-1">Enter your details to join an active poll session</p>
                 </div>
               </div>
             </CardHeader>
             <CardContent>
-              <div className="space-y-6">
+              <div className="space-y-4">
                 <div>
                   <label htmlFor="roomCode" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                     Room Code <span className="text-red-500">*</span>
