@@ -4,6 +4,7 @@ import Dashboard from "@/pages/teacher/dashboard";
 import GenAIHomePage from "@/pages/teacher/genai-home";
 import PollRoomPage from "@/pages/teacher/TeacherPollRoom";
 import CreateRoomPage from "@/pages/teacher/CreatePollRoom";
+import TeacherPollAnalysisPage from "@/pages/teacher/TeacherPollAnalysisPage";
 
 const teacherRoutes: RouteObject = {
   path: "/teacher",
@@ -28,6 +29,10 @@ const teacherRoutes: RouteObject = {
     {
       path: 'pollroom/$code',
       element: <PollRoomPage />
+    },
+    {
+      path: 'room/:roomId/analysis',
+      element: <TeacherPollAnalysisPage />
     },
   ],
 };

@@ -13,7 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import React from "react";
+import React, { useState } from "react";
 
 const AuroraText = ({
   children,
@@ -45,6 +45,14 @@ export default function TeacherLayout() {
   const isActiveRoute = (path: string) => {
     return location.pathname === path;
   };
+
+  // Generic mock rooms
+  const mockRooms = [
+    { id: "room1", name: "Math Quiz Room" },
+    { id: "room2", name: "Science Quiz Room" },
+    { id: "room3", name: "History Quiz Room" },
+  ];
+  const [roomsOpen, setRoomsOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-slate-900 dark:to-indigo-950">
@@ -118,43 +126,34 @@ export default function TeacherLayout() {
               </Link>
             </Button>
 
-            <Button
-              variant="ghost"
-              size="sm"
-              className={`relative h-10 px-4 text-sm font-medium transition-all duration-300 group ${isActiveRoute('/teacher/manage-rooms')
-                ? 'bg-gradient-to-r from-purple-100 to-blue-100 text-purple-700 shadow-md shadow-purple-200/50 dark:from-purple-900/40 dark:to-blue-900/40 dark:text-purple-300 dark:shadow-purple-900/20'
-                : 'text-slate-700 hover:bg-gradient-to-r hover:from-slate-100 hover:to-blue-50 hover:text-slate-900 hover:shadow-md hover:shadow-slate-200/50 dark:text-gray-300 dark:hover:bg-gradient-to-r dark:hover:from-gray-800 dark:hover:to-gray-700 dark:hover:text-white dark:hover:shadow-gray-900/20'
-                }`}
-              asChild
-            >
-              <Link to="/teacher/manage-rooms">
-                <Users className="h-4 w-4 mr-2" />
-                <span className="relative z-10">Manage Rooms</span>
-                {isActiveRoute('/teacher/manage-rooms') && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-md dark:from-purple-400/20 dark:to-blue-400/20" />
-                )}
-              </Link>
-            </Button>
-            {/*  
-            <Button
-              variant="ghost"
-              size="sm"
-              className={`relative h-10 px-4 text-sm font-medium transition-all duration-300 group ${
-                isActiveRoute('/teacher/analytics')
-                  ? 'bg-gradient-to-r from-purple-100 to-blue-100 text-purple-700 shadow-md shadow-purple-200/50 dark:from-purple-900/40 dark:to-blue-900/40 dark:text-purple-300 dark:shadow-purple-900/20'
-                  : 'text-slate-700 hover:bg-gradient-to-r hover:from-slate-100 hover:to-blue-50 hover:text-slate-900 hover:shadow-md hover:shadow-slate-200/50 dark:text-gray-300 dark:hover:bg-gradient-to-r dark:hover:from-gray-800 dark:hover:to-gray-700 dark:hover:text-white dark:hover:shadow-gray-900/20'
-              }`}
-              asChild
-            >
-              <Link to="/teacher/analytics">
-                <BarChart3 className="h-4 w-4 mr-2" />
-                <span className="relative z-10">Analytics</span>
-                {isActiveRoute('/teacher/analytics') && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-md dark:from-purple-400/20 dark:to-blue-400/20" />
-                )}
-              </Link>
-            </Button>
-            */}
+            <div className="relative">
+              <Button
+                variant="outline"
+                size="sm"
+                className="flex items-center gap-2"
+                onClick={() => setRoomsOpen((open) => !open)}
+              >
+                <Users className="h-4 w-4" />
+                Manage Rooms
+              </Button>
+              {roomsOpen && (
+                <div className="absolute right-0 mt-2 w-56 bg-white border rounded shadow-lg z-50">
+                  {mockRooms.map((room) => (
+                    <button
+                      key={room.id}
+                      className="w-full text-left px-4 py-2 hover:bg-blue-50"
+                      onClick={() => {
+                        setRoomsOpen(false);
+                        navigate({ to: `/teacher/room/${room.id}/analysis` });
+                      }}
+                    >
+                      {room.name}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
             <Button
               variant="ghost"
               size="sm"

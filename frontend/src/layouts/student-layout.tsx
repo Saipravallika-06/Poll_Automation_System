@@ -95,7 +95,7 @@ export default function StudentLayout() {
               className={`relative h-10 px-4 text-sm font-medium transition-all duration-300 group ${isActiveRoute('/student/home')
                   ? 'bg-gradient-to-r from-purple-100 to-blue-100 text-purple-700 shadow-md shadow-purple-200/50 dark:from-purple-900/40 dark:to-blue-900/40 dark:text-purple-300 dark:shadow-purple-900/20'
                   : 'text-slate-700 hover:bg-gradient-to-r hover:from-slate-100 hover:to-blue-50 hover:text-slate-900 hover:shadow-md hover:shadow-slate-200/50 dark:text-gray-300 dark:hover:bg-gradient-to-r dark:hover:from-gray-800 dark:hover:to-gray-700 dark:hover:text-white dark:hover:shadow-gray-900/20'
-                }`}
+              }`}
               asChild
             >
               <Link to="/student/home">
@@ -112,7 +112,7 @@ export default function StudentLayout() {
               className={`relative h-10 px-4 text-sm font-medium transition-all duration-300 group ${isActiveRoute('/student/pollroom')
                   ? 'bg-gradient-to-r from-purple-100 to-blue-100 text-purple-700 shadow-md shadow-purple-200/50 dark:from-purple-900/40 dark:to-blue-900/40 dark:text-purple-300 dark:shadow-purple-900/20'
                   : 'text-slate-700 hover:bg-gradient-to-r hover:from-slate-100 hover:to-blue-50 hover:text-slate-900 hover:shadow-md hover:shadow-slate-200/50 dark:text-gray-300 dark:hover:bg-gradient-to-r dark:hover:from-gray-800 dark:hover:to-gray-700 dark:hover:text-white dark:hover:shadow-gray-900/20'
-                }`}
+              }`}
               asChild
             >
               <Link to="/student/pollroom">
@@ -166,12 +166,12 @@ export default function StudentLayout() {
                   variant="ghost"
                   className="relative h-auto p-2 rounded-full hover:bg-transparent focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all duration-300"
                 >
-                  <div className="relative group">
-                    <div className="absolute -inset-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full blur opacity-20 group-hover:opacity-30 transition-opacity duration-300 dark:from-purple-400 dark:to-blue-400 dark:opacity-25 dark:group-hover:opacity-40"></div>
+            <div className="relative group">
+              <div className="absolute -inset-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full blur opacity-20 group-hover:opacity-30 transition-opacity duration-300 dark:from-purple-400 dark:to-blue-400 dark:opacity-25 dark:group-hover:opacity-40"></div>
                     <div className="relative flex items-center gap-2">
                       <Avatar className="h-12 w-12 border-2 border-white/90 transition-all duration-300 group-hover:scale-110 shadow-lg dark:border-gray-700/90">
-                        <AvatarImage src={user?.avatar} alt={user?.name} />
-                        <AvatarFallback className="bg-gradient-to-br from-purple-500 to-blue-500 text-white font-bold text-lg shadow-inner dark:from-purple-400 dark:to-blue-400">
+                <AvatarImage src={user?.avatar} alt={user?.name} />
+                <AvatarFallback className="bg-gradient-to-br from-purple-500 to-blue-500 text-white font-bold text-lg shadow-inner dark:from-purple-400 dark:to-blue-400">
                           {user?.name?.charAt(0).toUpperCase() || 'T'}
                         </AvatarFallback>
                       </Avatar>
@@ -198,8 +198,8 @@ export default function StudentLayout() {
                     <AvatarImage src={user?.avatar} alt={user?.name} />
                     <AvatarFallback className="bg-gradient-to-br from-purple-500 to-blue-500 text-white font-bold dark:from-purple-400 dark:to-blue-400">
                       {user?.name?.charAt(0).toUpperCase() || 'T'}
-                    </AvatarFallback>
-                  </Avatar>
+                </AvatarFallback>
+              </Avatar>
                   <div className="flex-1 min-w-0">
                     <div className="text-sm font-medium text-slate-900 dark:text-gray-100 truncate">
                       {user?.name || 'Student'}
@@ -208,7 +208,7 @@ export default function StudentLayout() {
                       {user?.email || 'student@example.com'}
                     </div>
                   </div>
-                </div>
+            </div>
 
                 <DropdownMenuSeparator className="bg-slate-200/80 dark:bg-gray-700/80" />
 
@@ -234,9 +234,9 @@ export default function StudentLayout() {
 
                 {/* Logout */}
                 <DropdownMenuItem
-                  onClick={handleLogout}
+              onClick={handleLogout}
                   className="flex items-center gap-3 p-3 rounded-lg cursor-pointer hover:bg-gradient-to-r hover:from-red-50 hover:to-orange-50 transition-all duration-200 dark:hover:from-red-900/30 dark:hover:to-orange-900/30"
-                >
+            >
                   <div className="h-8 w-8 rounded-full bg-gradient-to-r from-red-100 to-orange-100 flex items-center justify-center dark:from-red-900/50 dark:to-orange-900/50">
                     <LogOut className="h-4 w-4 text-red-600 dark:text-red-400" />
                   </div>

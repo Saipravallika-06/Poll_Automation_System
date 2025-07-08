@@ -91,7 +91,7 @@ export default function StudentDashboard() {
                   <span className="font-semibold text-gray-700 dark:text-gray-300">Polls Absent</span>
                 </div>
                 <span className="text-red-500 dark:text-red-400 font-bold text-lg">{pollStats.absent}</span>
-              </div>
+            </div>
           </div>
         </Card>
       </div>
